@@ -1,4 +1,4 @@
-# Cyclic Triaxial Testing PDF Report Generator
+# Cyclic Triaxial Testing PDF Report Generator Outline
 
 ## 1. Core Functions
 - Mathematical calculation functions (Young's modulus, damping, permanent strain)
