@@ -92,6 +92,6 @@
         -  Get the maximum mid plane pore pressure in the last VALID cycle (with >= 90 rows)
         - Get the first mid plane pore pressure value for this stage
         - $$midEPWP = MAX(cellPressure) - (porePressure from first stage(intimeorder))\times 100$$
-    - $$compExtRatio = \frac{MAX(deviatorStress)-55}{MIN(deviatorStress)-55}
+    - $$compExtRatio = \frac{MAX(deviatorStress)-55}{MIN(deviatorStress)-55}$$
     - Update permanent axial strain to use the last valid cycle with 90+ rows
     - Values formatted to 2 dp
