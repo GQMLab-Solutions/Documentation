@@ -183,7 +183,7 @@ defult values:
     - if Len(subsample rate)> 1000: $$subsampleRate = \frac{len(subsamplerate)}{50}$$
 
 ## Cyclic loading 
-### Cyclic  loading table
+## Cyclic  loading table
 - Calculation double amplitude
     - $$strainDA = maxStrain - minStrain$$
     - $$stressDA = maxStress - minStress$$
@@ -213,10 +213,119 @@ defult values:
         - else use midpoint of strains at min/max stress 
         - If permanat strain > 1.0: $$ permanentStrain = \frac{permenantStrain}{3100}$$
         - Ensure: 0.0 < permenant strain  < 1.0
-### For each stage with cyclic data
 - Calculate CRS
     - $$CRS = \frac{maxDeviator - minDeviator}{2\times effectiveConfiningPressure}$$
     - CRS = Max(CRS)
 - Calculate average CRS
     - $$CRS = \frac{maxDeviator - minDeviator}{2\times effectiveConfiningPressure}$$
     - CRS = Average(CRS)
+- add exponential cycles 
+    - $$\text{if }current \leq maxCycles: current = current + 50$$
+    - $$\text{if }currect > 200: current = current +100$$
+- Calculate Cycle data 
+    - $$strainRange = MAX(axialStrain)- MIN(axialStrain)$$
+    - $$ doubleAmpStrain = MAX(axialStrain) - MIN(axialStrain)$$
+    - $$ singleAmpStrain = \frac{MAX(axialStrain) - MIN(axialStrain)}{2}$$
+    - permenant strain = last Value of axial strain
+    - $$deviatorStressAmplitude = MAX(deviatorStress)- MIN(deviatorStress)$$
+    - $$baseEPWP = \frac{MAX(porePressure)-initialPorePressure}{Average(cellPressure)-Average(backPressure)}\times 100$$
+    - $$midEPWP = \frac{MAX(midporePressure)-initialMidPorePressure}{Average(cellPressure)-Average(backPressure)}\times 100$$
+    - adaptive logic based on charicteristics
+        - If MIN(deviator Stress) does not = 55: $$\frac{MAX(deviatorStress)-55}{MIN(deviatorStress)-55}$$ 
+        - if Strain range > 0.5 or max strain > 1 or min strain < -0.5THEN -1
+- Calculate CRS
+    - $$CRS = \frac{maxDeviatorStress - minDeviatorStress}{2\times (Average(cellPressure)-Average(backPressure))}$$
+    - $$effectiveConfiningPressure = MEAN(cellPressure)-MEAN(backPressure)$$
+- if permenant strain > 0: $$permenantStrain = permStrain \times 100$$
+
+## Cyclic loading plots
+- $$samplingRate = \frac{dataCount}{maxPoints}$$
+### Plot I Deviator vs Cycle 
+- X axis = cycle number from database 
+- Y axis = deviator stress from database
+### Plot II Strain vs Cycle
+- X axis - cycle number
+- Y axis - axial Strain PCt
+    - $$axialStrainPCT = AxialStrain \times100$$
+### Plot III stress strain loop 
+- X axis - Axial strain (strainPercent)
+- Y axis - deviator stress from database
+- plot for each cycle
+    - $$strainPercent = axialStrain \times 100$$
+- $$ Sample Size = (length of all Strains)$$
+- $$initialStrain = \Sigma (\frac{first(sampleSize)}{sampleSize})$$
+### Plot IV q vs p prime 
+- X axis - p prime values - effective cambridge p
+- Y axis - q values - deviator stress 
+- If: $$ 0.5 < ((LASTPPrimeValue - FirstPPrimeValue)^2 + (LASTQValue - FIRSTQValue)^2)^0.5$$
+    - the first value of each list(P prime and Q values) is added to the end of the list
+### Plot V t prime vs s prime
+- X axis - S prime
+    - $$ effectiveAxialStress = effectiveAxialStress \times 1000$$
+    - $$ sPrime = \frac{effectiveAxialStress + effectiveRadialStress}{2}$$
+- Y axis - T prime
+    - $$ effectiveRadialStress = effectiveRadialStress \times 1000$$
+    - $$ tPrime = \frac{effectiveAxialStress - effectiveRadialStress}{2}$$
+- If: $$ 0.5 < ((LASTsValue - FirstsValue)^2 + (LASTtValue - FIRSTtValue)^2)^0.5$$
+    - the first value of each list(s prime and t values) is added to the end of the list
+### Plot VI basePWP vs Strain
+- X axis - Axial strain 
+    - $$ axialStrain = axialStrain \times 100$$
+- Y axis - basePWP from database
+- $$ Sample Size = (length of all Strains)$$
+- $$initialStrain = \Sigma (\frac{first(sampleSize)}{sampleSize})$$
+- If: $$ 0.5 < ((LASTstrain - Firststrain)^2 + (LASTpwp - FIRSTpwp)^2)^0.5$$
+    - the first value of each list(strain and pwp) is added to the end of the list
+### Plot VII midPWP and strain
+- X axis - Axial strain 
+    - $$ axialStrain = axialStrain \times 100$$
+- Y axis - midPWP from database
+- $$ Sample Size = (length of all Strains)$$
+- $$initialStrain = \Sigma (\frac{first(sampleSize)}{sampleSize})$$
+- If: $$ 0.5 < ((LASTstrain - Firststrain)^2 + (LASTpwp - FIRSTpwp)^2)^0.5$$
+    - the first value of each list(strain and pwp) is added to the end of the list
+### Plot VIII excess mid pwp ratio
+- X axis - Cycle number 
+- Y axis - pwpRatio
+    - $$initialMidPWP  = MEAN(midPlanePorePressure)$$
+    - $$ pwpChange = midPorePressure - initialMidPWP$$
+    - $$ confiningPressure = cellPressure - backPressure$$
+    - $$ pwpRatio = \frac{pwpChange}{confiningPressure}\times 100$$
+### Plot IX excess base PWP ratio NOTE THIS IS IN THE CODE TWICE (plot_excess_base_pwp_ratio)
+- X axis - Cycle number 
+- Y axis - pwpRatio
+    - $$initialPWP  = MEAN(PorePressure)$$
+    - $$ pwpChange = PorePressure - initialPWP$$
+    - $$ confiningPressure = cellPressure - backPressure$$
+    - $$ pwpRatio = \frac{pwpChange}{confiningPressure}\times 100$$
+### Plot X modulus damping vs cycles 
+- Y axis
+    - Modulus damping from - Calculated Cycle properties 
+    - Damping values from - Calculated Cycle properties 
+- X axis - Cycle number
+### Plot XI strain Envelope
+- Y axis: Axial Strain %
+    - $$maxStrain = MAX(axialStrain\times100) $$
+        - $$maxStrain = maxStrain - MEAN(\text{first 3 values of: }avgStrain)$$
+    - $$minStrain = MIN(axialStrain\times100) $$
+        - $$minStrain = minStrain - MEAN(\text{first 3 values of: }avgStrain)$$
+    - $$avgStrain = MEAN(axialStrain\times100) $$
+        - $$avgStrain = avgStrain - MEAN(\text{first 3 values of: }avgStrain)$$
+- X axis - Cycle Number 
+### Plot XII stress envelope
+- Y axis: Deviator Stress (kPa)
+    - $$ maxStress = MAX(deviator Stress)$$
+    - $$ minStress = MIN(deviator Stress)$$
+    - $$ avgStress = MEAN(deviator Stress)$$
+- X axis - Cycle number 
+### Plot XIII Strain Componants 
+- Y axis: Axial strain %
+    - $$maxStrain = MAX(axialStrain\times100) $$
+    - $$minStrain = MIN(axialStrain\times100) $$
+    - $$avgStrain = MEAN(axialStrain\times100) $$
+        - $$ permenantStrain = avgStrain$$
+        - $$ singleAmpStrain = \frac{maxStrain - minStrain}{2}$$
+    - $$offset = \text{First Value of: }permenantStrain$$
+        - $$permenantStrain = permenantStrain - offset$$
+        - $$avgStrain = avgStrain - offset$$
+- X axis - Cycle Number 
