@@ -124,7 +124,7 @@ defult values:
     - $$sPrime = \frac{effectiveAxial + effectiveRadial}{2}$$
 ### Anisotrophic Consolidation V - pwp time ani
 - X axis - 
-    - if : $$ \frac{MAXtime}{MINtime + 0.1}>100$$ X axis is log(time)
+    - if : $$\frac{MAXtime}{MINtime + 0.1}>100$$ X axis is log(time)
 - Y axis -  mid and base PWP 
 - If there are more than 500 data points select every nth point where n is total / 500
 ### Anisotrophic Consolidation VI volumetric time ani
@@ -133,7 +133,7 @@ defult values:
 ### Anisotrophic Consolidation VII volstrain time ani
 - X axis - Time since start of stage 
 - Y axis - Volumetric strain 
-    - $$ volumStrain = \frac{volChange}{initialVolum}\times 100$$
+    - $$volumStrain = \frac{volChange}{initialVolum}\times 100$$
     - if max change>0: $$volumStrain= \frac{volChange}{maxChange}\times 10$$
 
 
@@ -141,12 +141,12 @@ defult values:
 defult values:
 - Initial Volum (cm^3) = 100.0
 - Initial void ratio = 0.8
-- $$ initialVolum = \pi \times (\frac{initialDiameter(mm)}{2})^2\times \frac{initialHeight(mm)}{1000}$$
+- $$initialVolum = \pi \times (\frac{initialDiameter(mm)}{2})^2\times \frac{initialHeight(mm)}{1000}$$
 - if temp VR >0: initial void ratio = tempVR
 
 ### Undrained Loading I axial mean effective
 - X axis - mean effective stress (kPa)
-    - if length(meanEffectiveStress)>1000: $$ subsampleRate = \frac{len(plotIndicies)}{1000}$$
+    - if length(meanEffectiveStress)>1000: $$subsampleRate = \frac{len(plotIndicies)}{1000}$$
     - select every nth value accourding to subsample rate of mean effective stress
 - Y axis - axial strain (%)
     - if len(axial strain) > 100: $$markerStep=\frac{len(plotIndiciesSub)}{50}$$
@@ -196,8 +196,8 @@ defult values:
     - strain and stress amplitudes 
         - $$strainDA = maxStrain - minStrain$$
         - $$stressDA = maxStress - minStress$$
-        - $$ strainAmplitude = \frac{strainDA}{2}$$
-        - $$ stressAmplitude = \frac{stressDA}{2}$$
+        - $$strainAmplitude = \frac{strainDA}{2}$$
+        - $$stressAmplitude = \frac{stressDA}{2}$$
     - Maximum stored elastic energy 
         - $$storedEnergy = 0.5 \times strainAmplitude \times StressAmplitude$$
     - Calculate damping coefficcent 
@@ -207,11 +207,11 @@ defult values:
 - Calculate permanent axial strain (%)
     - Check all stresses are positive and there is at least 2 data points 
     - detect when data crosses 0 and use linear interpolation to find strain where stress is 0
-        - $$ \text{For each } i  \in \{1, 2, \ldots, n-1\}, \text{ if } \text{stresses}_{i-1} \times \text{stresses}_i < 0,\text{ then:}$$
-        - $$ \text{Zero Crossings} = \text{strains}_{i-1}-(\frac{\text{stresses}_{i-1}}{stresses_i - stresses_{i-1}}) \times (strains_i-strains_{i-1})$$
+        - $$\text{For each } i  \in \{1, 2, \ldots, n-1\}, \text{ if } \text{stresses}_{i-1} \times \text{stresses}_i < 0,\text{ then:}$$
+        - $$\text{Zero Crossings} = \text{strains}_{i-1}-(\frac{\text{stresses}_{i-1}}{stresses_i - stresses_{i-1}}) \times (strains_i-strains_{i-1})$$
         - permenant strain = mean(Zero Crossings)
         - else use midpoint of strains at min/max stress 
-        - If permanat strain > 1.0: $$ permanentStrain = \frac{permenantStrain}{3100}$$
+        - If permanat strain > 1.0: $$permanentStrain = \frac{permenantStrain}{3100}$$
         - Ensure: 0.0 < permenant strain  < 1.0
 - Calculate CRS
     - $$CRS = \frac{maxDeviator - minDeviator}{2\times effectiveConfiningPressure}$$
@@ -224,14 +224,14 @@ defult values:
     - $$\text{if }currect > 200: current = current +100$$
 - Calculate Cycle data 
     - $$strainRange = MAX(axialStrain)- MIN(axialStrain)$$
-    - $$ doubleAmpStrain = MAX(axialStrain) - MIN(axialStrain)$$
-    - $$ singleAmpStrain = \frac{MAX(axialStrain) - MIN(axialStrain)}{2}$$
+    - $$doubleAmpStrain = MAX(axialStrain) - MIN(axialStrain)$$
+    - $$singleAmpStrain = \frac{MAX(axialStrain) - MIN(axialStrain)}{2}$$
     - permenant strain = last Value of axial strain
     - $$deviatorStressAmplitude = MAX(deviatorStress)- MIN(deviatorStress)$$
     - $$baseEPWP = \frac{MAX(porePressure)-initialPorePressure}{Average(cellPressure)-Average(backPressure)}\times 100$$
     - $$midEPWP = \frac{MAX(midporePressure)-initialMidPorePressure}{Average(cellPressure)-Average(backPressure)}\times 100$$
     - adaptive logic based on charicteristics
-        - If MIN(deviator Stress) does not = 55: $$\frac{MAX(deviatorStress)-55}{MIN(deviatorStress)-55}$$ 
+        - If MIN(deviator Stress) does not = 55: $$\frac{MAX(deviatorStress)-55}{MIN(deviatorStress)-55}$$
         - if Strain range > 0.5 or max strain > 1 or min strain < -0.5THEN -1
 - Calculate CRS
     - $$CRS = \frac{maxDeviatorStress - minDeviatorStress}{2\times (Average(cellPressure)-Average(backPressure))}$$
@@ -252,52 +252,52 @@ defult values:
 - Y axis - deviator stress from database
 - plot for each cycle
     - $$strainPercent = axialStrain \times 100$$
-- $$ Sample Size = (length of all Strains)$$
+- $$Sample Size = (length of all Strains)$$
 - $$initialStrain = \Sigma (\frac{first(sampleSize)}{sampleSize})$$
 ### Plot IV q vs p prime 
 - X axis - p prime values - effective cambridge p
 - Y axis - q values - deviator stress 
-- If: $$ 0.5 < ((LASTPPrimeValue - FirstPPrimeValue)^2 + (LASTQValue - FIRSTQValue)^2)^0.5$$
+- If: $$0.5 < ((LASTPPrimeValue - FirstPPrimeValue)^2 + (LASTQValue - FIRSTQValue)^2)^0.5$$
     - the first value of each list(P prime and Q values) is added to the end of the list
 ### Plot V t prime vs s prime
 - X axis - S prime
-    - $$ effectiveAxialStress = effectiveAxialStress \times 1000$$
-    - $$ sPrime = \frac{effectiveAxialStress + effectiveRadialStress}{2}$$
+    - $$effectiveAxialStress = effectiveAxialStress \times 1000$$
+    - $$sPrime = \frac{effectiveAxialStress + effectiveRadialStress}{2}$$
 - Y axis - T prime
-    - $$ effectiveRadialStress = effectiveRadialStress \times 1000$$
-    - $$ tPrime = \frac{effectiveAxialStress - effectiveRadialStress}{2}$$
-- If: $$ 0.5 < ((LASTsValue - FirstsValue)^2 + (LASTtValue - FIRSTtValue)^2)^0.5$$
+    - $$effectiveRadialStress = effectiveRadialStress \times 1000$$
+    - $$tPrime = \frac{effectiveAxialStress - effectiveRadialStress}{2}$$
+- If: $$0.5 < ((LASTsValue - FirstsValue)^2 + (LASTtValue - FIRSTtValue)^2)^0.5$$
     - the first value of each list(s prime and t values) is added to the end of the list
 ### Plot VI basePWP vs Strain
 - X axis - Axial strain 
-    - $$ axialStrain = axialStrain \times 100$$
+    - $$axialStrain = axialStrain \times 100$$
 - Y axis - basePWP from database
-- $$ Sample Size = (length of all Strains)$$
+- $$Sample Size = (length of all Strains)$$
 - $$initialStrain = \Sigma (\frac{first(sampleSize)}{sampleSize})$$
-- If: $$ 0.5 < ((LASTstrain - Firststrain)^2 + (LASTpwp - FIRSTpwp)^2)^0.5$$
+- If: $$0.5 < ((LASTstrain - Firststrain)^2 + (LASTpwp - FIRSTpwp)^2)^0.5$$
     - the first value of each list(strain and pwp) is added to the end of the list
 ### Plot VII midPWP and strain
 - X axis - Axial strain 
-    - $$ axialStrain = axialStrain \times 100$$
+    - $$axialStrain = axialStrain \times 100$$
 - Y axis - midPWP from database
-- $$ Sample Size = (length of all Strains)$$
+- $$Sample Size = (length of all Strains)$$
 - $$initialStrain = \Sigma (\frac{first(sampleSize)}{sampleSize})$$
-- If: $$ 0.5 < ((LASTstrain - Firststrain)^2 + (LASTpwp - FIRSTpwp)^2)^0.5$$
+- If: $$0.5 < ((LASTstrain - Firststrain)^2 + (LASTpwp - FIRSTpwp)^2)^0.5$$
     - the first value of each list(strain and pwp) is added to the end of the list
 ### Plot VIII excess mid pwp ratio
 - X axis - Cycle number 
 - Y axis - pwpRatio
     - $$initialMidPWP  = MEAN(midPlanePorePressure)$$
-    - $$ pwpChange = midPorePressure - initialMidPWP$$
-    - $$ confiningPressure = cellPressure - backPressure$$
-    - $$ pwpRatio = \frac{pwpChange}{confiningPressure}\times 100$$
+    - $$pwpChange = midPorePressure - initialMidPWP$$
+    - $$confiningPressure = cellPressure - backPressure$$
+    - $$pwpRatio = \frac{pwpChange}{confiningPressure}\times 100$$
 ### Plot IX excess base PWP ratio NOTE THIS IS IN THE CODE TWICE (plot_excess_base_pwp_ratio)
 - X axis - Cycle number 
 - Y axis - pwpRatio
     - $$initialPWP  = MEAN(PorePressure)$$
-    - $$ pwpChange = PorePressure - initialPWP$$
-    - $$ confiningPressure = cellPressure - backPressure$$
-    - $$ pwpRatio = \frac{pwpChange}{confiningPressure}\times 100$$
+    - pwpChange = PorePressure - initialPWP$$
+    - $$confiningPressure = cellPressure - backPressure$$
+    - $$pwpRatio = \frac{pwpChange}{confiningPressure}\times 100$$
 ### Plot X modulus damping vs cycles 
 - Y axis
     - Modulus damping from - Calculated Cycle properties 
@@ -314,17 +314,17 @@ defult values:
 - X axis - Cycle Number 
 ### Plot XII stress envelope
 - Y axis: Deviator Stress (kPa)
-    - $$ maxStress = MAX(deviator Stress)$$
-    - $$ minStress = MIN(deviator Stress)$$
-    - $$ avgStress = MEAN(deviator Stress)$$
+    - $$maxStress = MAX(deviator Stress)$$
+    - $$minStress = MIN(deviator Stress)$$
+    - $$avgStress = MEAN(deviator Stress)$$
 - X axis - Cycle number 
 ### Plot XIII Strain Componants 
 - Y axis: Axial strain %
     - $$maxStrain = MAX(axialStrain\times100) $$
     - $$minStrain = MIN(axialStrain\times100) $$
     - $$avgStrain = MEAN(axialStrain\times100) $$
-        - $$ permenantStrain = avgStrain$$
-        - $$ singleAmpStrain = \frac{maxStrain - minStrain}{2}$$
+        - $$permenantStrain = avgStrain$$
+        - $$singleAmpStrain = \frac{maxStrain - minStrain}{2}$$
     - $$offset = \text{First Value of: }permenantStrain$$
         - $$permenantStrain = permenantStrain - offset$$
         - $$avgStrain = avgStrain - offset$$
