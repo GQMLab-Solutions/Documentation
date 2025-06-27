@@ -1,7 +1,19 @@
 # Cyclic Triaxial Testing Calculation Validation for Tables 
 
 ## Specimin details (line 856)
-- All from database aside from the below data
+#### From database:
+- specimen_height_mm 
+- specimen_diameter_mm 
+- specimen_mass_initial_g 
+- specimen_mass_final_g 
+- particle_density_mg_m3 
+- ini_tin_mass
+- ini_tin_wet
+- ini_tin_dry
+- fin_tin_mass
+- fin_tin_wet
+- fin_tin_dry
+#### Calculations
 - Specimin Volume 
     - $$Radius(cm) = \frac{specimin Diameter(mm)}{20}$$
     - $$Height(cm) = \frac{specimin Height(mm)}{10}$$
@@ -19,20 +31,19 @@
     - $$volumeVoids = volume(cm^2) - volumeSolids$$
     - $$VoidRatio = \frac{volumeVoids}{volumSolids}$$
 
-##### Decimal places for each value 
-- specimen_height_str = 2 dp
-- specimen_diameter_str = 2dp
-- volume_cm3_str = 2dp
-- void_ratio_str = 4dp
-- bulk_density_str = 2dp
-- dry_density_str = 2dp
-- ini_moisture_content_str = 1dp
-- fin_moisture_content_str = 1dp
-- particle_density_str = 2dp
-- specimen_mass_initial_str = 2dp
-- specimen_mass_final_str = 2dp
-
 ## Saturation Table (line 1037)
+#### From Database 
+- b_value as Max B value
+- cell_pressure
+- back_pressure
+- pore_pressure
+- mid_plane_pore_pressure
+- test_stages
+- min_time
+- max_time
+- cell_pressure as start cell
+- pore_pressure as start pore 
+#### Calculations
 - All data from database aside from below calculations
 - B Value
     - $$deltacell = endCell - startCell$$
@@ -46,6 +57,24 @@
 - B Value = 2 dp
 
 ## Isoconsolidation Table (line 1279)
+#### From database 
+- specimen_mass_initial_g,
+- particle_density_mg_m3,
+- specimen_height_mm,
+- specimen_diameter_mm,
+- ini_tin_mass_content,
+- ini_tin_wet_content_initial,
+- ini_tin_dry_content_final
+- cell pressure 
+- back pressure
+- base pwp
+- plane pore pressure as mid pwp
+- current height
+- current diameter 
+- volum change as volume
+- deviator stress
+- axial stress
+#### Calculations 
 - Data from database all rounded to 1 dp aside from void ratio to 3dp
 - Moisture content 
     - $$waterMass = wetMass - dryMass$$
@@ -55,7 +84,7 @@
     - $$initialVolume = \pi\times (\frac{\frac{diameter(mm)}{2}}{10})^2\times(\frac{height(mm)}{10})$$
     - $$dryMass = \frac{speciminMass}{1 + \frac{moistureContent}{100}}$$
     - $$volumeSolids = \frac{dryMass}{particleDensity}$$
-    - $$initialVoidRatio = \frac{initialVolum - volumeSolids}{volumSolids}$$
+    - $$initialVoidRatio = \frac{initialVolume - volumeSolids}{volumeSolids}$$
 - Deviator stress calculation (only used if deviator stress is not given)
     - $$deviatorStress = axialStress -cellP$$
     - 1 dp
@@ -63,8 +92,8 @@
     - $$effectivePBase = cellP - basePWP$$ 
     - $$effectivePMid = cellP - midPWP$$
 - Void Ratio
-    - $$origionalVolum(mm^3) = \pi \times (\frac{speciminDiameter}{2})^2\times speciminHeight$$
-    - $$currentVolum = origionalVolum(mm^3) + volumChange$$
+    - $$origionalVolume(mm^3) = \pi \times (\frac{speciminDiameter}{2})^2\times speciminHeight$$
+    - $$currentVolume = origionalVolume(mm^3) + volumChange$$
     - $$volumRatio = \frac{currentVolum}{originalVolum(mm^3)}$$
     - $$voidRatio = initialVoidRatio \times volumRatio$$
 - Specimin Volum cm^3
@@ -72,13 +101,81 @@
     - $$volum(mm^3) = area(mm^3)\times height$$
     - $$speciminVolum(cm^3) = \frac{volum(mm^3)}{1000}$$
 ## Anisocosolidation (line 1570)
+#### From database 
+- specimen_mass_initial_g,
+- particle_density_mg_m3,
+- specimen_height_mm,
+- specimen_diameter_mm,
+- ini_tin_mass_content,
+- ini_tin_wet_content_initial,
+- ini_tin_dry_content_final
+- cell pressure 
+- back pressure
+- base pwp
+- plane pore pressure as mid pwp
+- current height
+- current diameter 
+- volum change as volume
+- deviator stress
+- axial stress
+#### Calculations 
 - Calculations same as Isoconsolidation but using next stage 
 ## Undrained Loading (line 1850)
-- All data from database 
+#### From database 
+- specimen_mass_initial_g,
+- particle_density_mg_m3,
+- specimen_height_mm,
+- specimen_diameter_mm,
+- ini_tin_mass_content,
+- ini_tin_wet_content_initial,
+- ini_tin_dry_content_final
+- cell pressure 
+- back pressure
+- base pwp
+- plane pore pressure as mid pwp
+- current height
+- current diameter 
+- volum change as volume
+- deviator stress
+- axial stress
 ## Shear (line1997)
-- All data from Database
+#### From database 
+- specimen_mass_initial_g,
+- particle_density_mg_m3,
+- specimen_height_mm,
+- specimen_diameter_mm,
+- ini_tin_mass_content,
+- ini_tin_wet_content_initial,
+- ini_tin_dry_content_final
+- cell pressure 
+- back pressure
+- base pwp
+- plane pore pressure as mid pwp
+- current height
+- current diameter 
+- volum change as volume
+- deviator stress
+- axial stress
+
 ## Cyclic Loading (line 2082)
-- Data from database
+#### From database 
+- specimen_mass_initial_g,
+- particle_density_mg_m3,
+- specimen_height_mm,
+- specimen_diameter_mm,
+- ini_tin_mass_content,
+- ini_tin_wet_content_initial,
+- ini_tin_dry_content_final
+- cell pressure 
+- back pressure
+- base pwp
+- plane pore pressure as mid pwp
+- current height
+- current diameter 
+- volum change as volume
+- deviator stress
+- axial stress
+#### Calculations 
 - Data Querry
     - $$singleAmpStrain = \frac{Max(axialStrain) - MIN(axialStrain)}{2}$$
     - if no max cyclic stress ratio in database: 

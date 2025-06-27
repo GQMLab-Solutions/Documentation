@@ -23,31 +23,31 @@
 
 ## Isotrophic Consolidation Plots
 defult values:
-- Initial Volum (cm^3) = 100.0
+- Initial Volume (cm^3) = 100.0
 - Initial void ratio = 0.7
 - partical density = 2.65
-- Volum calculations
+- Volume calculations
     - $$radius(cm) = \frac{initialDiameter(mm)}{20}$$
     - $$height(cm) = \frac{initialHeight(mm)}{10}$$
-    - $$initialVolum(cm^3) = \pi \times radius(cm) \times radius(cm) \times height(cm)$$
+    - $$initialVolume(cm^3) = \pi \times radius(cm) \times radius(cm) \times height(cm)$$
 - Dry density and void ratio
-    - $$bulkDensity = \frac{initialMass(g)}{initialVolum(cm^3)}$$
+    - $$bulkDensity = \frac{initialMass(g)}{initialVolume(cm^3)}$$
     - moisture content 
     - $$moistureContent = (\frac{iniTinWet - iniTinDry}{iniTinDry - iniTinMass})\times 100$$
     - $$dryDensity = \frac{bulkDensity}{1 + \frac{moistureContent}{100}}$$
-    - $$volumSoilids = \frac{dryDensity\times initialVolum}{particleDensity}$$
-    - $$volumVoids = initialVolum - volumSolids$$
-    - $$initialVoidRatio = \frac{volumVoids}{volumSolids}$$
+    - $$volumeSoilids = \frac{dryDensity\times initialVolume}{particleDensity}$$
+    - $$volumeVoids = initialVolume - volumeSolids$$
+    - $$initialVoidRatio = \frac{volumeVoids}{volumeSolids}$$
 
 ### Isotrophic Consolidation I - axial log
 - X axis - Log(time)
 - Y axis - Axial strain from database
 - If there are more than 200 data points select every nth point where n is total / 200
-### Isotrophic Consolidation II - volum log
+### Isotrophic Consolidation II - volume log
 - X axis - Log(time)
-- Y axis - volum strain
+- Y axis - volume strain
 - Caculate volumetric strain 
-    - $$volStrainPCT = (\frac{volChageFloat}{initialVolum})\times 100$$
+    - $$volStrainPCT = (\frac{volChageFloat}{initialVolume})\times 100$$
 - If there are more than 200 data points select every nth point where n is total / 200
 ### Isotrophic Consolidation III - pwp elapsed
 - Y axis - pore water pressure 
@@ -70,29 +70,29 @@ defult values:
 ### Isotrophic Consolidation VI void time
 - X axis - time since start of stage 
 - Y axis - current void data 
-    - $$volumChange(cm^3) = initialVolum - \frac{volChange(mm^3)}{1000}$$
-    - $$solidsVolumm = \frac{initialVolum}{1 + initialVoidRatio}$$
-    - $$voidsVolumn = currntVolum(cm^3) - solidsVolumn$$
-    - $$currentVoidRatio = \frac{voidsVolumn}{solidsVolumn}$$
+    - $$volumeChange(cm^3) = initialVolume - \frac{volChange(mm^3)}{1000}$$
+    - $$solidsVolume = \frac{initialVolume}{1 + initialVoidRatio}$$
+    - $$voidsVolume = currntVolume(cm^3) - solidsVolume$$
+    - $$currentVoidRatio = \frac{voidsVolume}{solidsVolume}$$
 
 
 ## Anisotrophic consolidation plots
 defult values:
-- Initial Volum (cm^3) = 100.0
+- Initial Volume (cm^3) = 100.0
 - Initial void ratio = 0.7
 - partical density = 2.65
-- Volum calculations
+- Volume calculations
     - $$radius(cm) = \frac{initialDiameter(mm)}{20}$$
     - $$height(cm) = \frac{initialHeight(mm)}{10}$$
-    - $$initialVolum(cm^3) = \pi \times radius(cm) \times radius(cm) \times height(cm)$$
+    - $$initialVolume(cm^3) = \pi \times radius(cm) \times radius(cm) \times height(cm)$$
 - Dry density and void ratio
-    - $$bulkDensity = \frac{initialMass(g)}{initialVolum(cm^3)}$$
+    - $$bulkDensity = \frac{initialMass(g)}{initialVolume(cm^3)}$$
     - moisture content 
     - $$moistureContent = (\frac{iniTinWet - iniTinDry}{iniTinDry - iniTinMass})\times 100$$
     - $$dryDensity = \frac{bulkDensity}{1 + \frac{moistureContent}{100}}$$
-    - $$volumSoilids = \frac{dryDensity\times initialVolum}{particleDensity}$$
-    - $$volumVoids = initialVolum - volumSolids$$
-    - $$initialVoidRatio = \frac{volumVoids}{volumSolids}$$
+    - $$volumeSoilids = \frac{dryDensity\times initialVolume}{particleDensity}$$
+    - $$volumeVoids = initialVolume - volumeSolids$$
+    - $$initialVoidRatio = \frac{volumeVoids}{volumeSolids}$$
 
 ### Anisotrophic Consolidation I - axial mean effective
 - X axis - effective mean stress
@@ -129,19 +129,19 @@ defult values:
 - If there are more than 500 data points select every nth point where n is total / 500
 ### Anisotrophic Consolidation VI volumetric time ani
 - X axis - time since start of stage 
-- Y axis - volumn change 
+- Y axis - volume change 
 ### Anisotrophic Consolidation VII volstrain time ani
 - X axis - Time since start of stage 
 - Y axis - Volumetric strain 
-    - $$volumStrain = \frac{volChange}{initialVolum}\times 100$$
-    - if max change>0: $$volumStrain= \frac{volChange}{maxChange}\times 10$$
+    - $$volumeStrain = \frac{volChange}{initialVolume}\times 100$$
+    - if max change>0: $$volumeStrain= \frac{volChange}{maxChange}\times 10$$
 
 
 ## Undrained Loading Plots
 defult values:
-- Initial Volum (cm^3) = 100.0
+- Initial Volume (cm^3) = 100.0
 - Initial void ratio = 0.8
-- $$initialVolum = \pi \times (\frac{initialDiameter(mm)}{2})^2\times \frac{initialHeight(mm)}{1000}$$
+- $$initialVolume = \pi \times (\frac{initialDiameter(mm)}{2})^2\times \frac{initialHeight(mm)}{1000}$$
 - if temp VR >0: initial void ratio = tempVR
 
 ### Undrained Loading I axial mean effective
@@ -257,7 +257,7 @@ defult values:
 ### Plot IV q vs p prime 
 - X axis - p prime values - effective cambridge p
 - Y axis - q values - deviator stress 
-- If: $$0.5 < ((LASTPPrimeValue - FirstPPrimeValue)^2 + (LASTQValue - FIRSTQValue)^2)^0.5$$
+- If: $$0.5 < ((LASTPPrimeValue - FirstPPrimeValue)^2 + (LASTQValue - FIRSTQValue)^2)^{0.5}$$
     - the first value of each list(P prime and Q values) is added to the end of the list
 ### Plot V t prime vs s prime
 - X axis - S prime
@@ -266,7 +266,7 @@ defult values:
 - Y axis - T prime
     - $$effectiveRadialStress = effectiveRadialStress \times 1000$$
     - $$tPrime = \frac{effectiveAxialStress - effectiveRadialStress}{2}$$
-- If: $$0.5 < ((LASTsValue - FirstsValue)^2 + (LASTtValue - FIRSTtValue)^2)^0.5$$
+- If: $$0.5 < ((LASTsValue - FirstsValue)^2 + (LASTtValue - FIRSTtValue)^2)^{0.5}$$
     - the first value of each list(s prime and t values) is added to the end of the list
 ### Plot VI basePWP vs Strain
 - X axis - Axial strain 
@@ -274,7 +274,7 @@ defult values:
 - Y axis - basePWP from database
 - $$Sample Size = (length of all Strains)$$
 - $$initialStrain = \Sigma (\frac{first(sampleSize)}{sampleSize})$$
-- If: $$0.5 < ((LASTstrain - Firststrain)^2 + (LASTpwp - FIRSTpwp)^2)^0.5$$
+- If: $$0.5 < ((LASTstrain - Firststrain)^2 + (LASTpwp - FIRSTpwp)^2)^{0.5}$$
     - the first value of each list(strain and pwp) is added to the end of the list
 ### Plot VII midPWP and strain
 - X axis - Axial strain 
@@ -282,7 +282,7 @@ defult values:
 - Y axis - midPWP from database
 - $$Sample Size = (length of all Strains)$$
 - $$initialStrain = \Sigma (\frac{first(sampleSize)}{sampleSize})$$
-- If: $$0.5 < ((LASTstrain - Firststrain)^2 + (LASTpwp - FIRSTpwp)^2)^0.5$$
+- If: $$0.5 < ((LASTstrain - Firststrain)^2 + (LASTpwp - FIRSTpwp)^2)^{0.5}$$
     - the first value of each list(strain and pwp) is added to the end of the list
 ### Plot VIII excess mid pwp ratio
 - X axis - Cycle number 
