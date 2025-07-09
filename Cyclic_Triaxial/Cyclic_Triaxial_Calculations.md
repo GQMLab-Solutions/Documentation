@@ -6,7 +6,7 @@
 
 - [ ] **Equation Verified**: Water Content Calculation
   - **Verified by**: @username
-  - **Date**: YYYY-MM-DD
+  - **Date**: 09/07/2025
   - **Implementation**: `waterContent = ((tinWetSoil - tinDrySoil) / (tinDrySoil - tinMass)) * 100`
   - **Test Status**: 
     - [ ] Formula mathematically correct
